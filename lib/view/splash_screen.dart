@@ -14,23 +14,29 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin{
 
   late final AnimationController _controller=AnimationController(
-  duration: Duration(seconds: 3),
+  duration: const Duration(seconds: 3),
       vsync: this)..repeat();
-  
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controller.dispose();
+  }
   @override
   void initState() {
     super.initState();
     // Start a timer to navigate to WordStatesScreen after 5 seconds
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => WordStatesScreen()),
+        MaterialPageRoute(builder: (context) => const WordStatesScreen()),
       );
     });
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,8 +52,8 @@ AnimatedBuilder(animation: _controller,
   return Transform.rotate(angle: _controller.value *2.0 * math.pi ,child: child);
 }),
           SizedBox(height:  MediaQuery.of(context).size.height *.08,),
-           Text(
-           "Covid 19\nTracking App",style: TextStyle(fontSize: 40),textAlign: TextAlign.center,),
+           const Text(
+           "Covid 19\nTracking App",style: TextStyle(fontSize: 40,color: Colors.white),textAlign: TextAlign.center,),
         ],
       )),
     );
