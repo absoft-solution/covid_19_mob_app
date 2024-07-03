@@ -1,4 +1,5 @@
 import 'package:covid_19_mob_app/Services/state_services.dart';
+import 'package:covid_19_mob_app/view/selected_country_data_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -86,7 +87,25 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
                       var country = snapshot.data![index];
                       if (searchController.text.isEmpty) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SelectedCountryDataScreen(
+                                          image: country["countryInfo"]["flag"],
+                                          name: country["country"],
+                                          active: country['active'],
+                                          critical: country['critical'],
+                                          test: country['tests'],
+                                          todayRecovered:
+                                              country['todayRecovered'],
+                                          totalCases: country['todayCases'],
+                                          totalDeaths: country['todayDeaths'],
+                                          totalRecovered:
+                                              country['todayRecovered'],
+                                        )));
+                          },
                           child: ListTile(
                             leading: Image.network(
                               country["countryInfo"]["flag"],
