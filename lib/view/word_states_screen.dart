@@ -1,6 +1,7 @@
 import 'package:covid_19_mob_app/Model/world_states_model.dart';
 import 'package:covid_19_mob_app/Services/state_services.dart';
 import 'package:covid_19_mob_app/constant/const_common_colors.dart';
+import 'package:covid_19_mob_app/view/country_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import '../componets/row_comonent.dart';
@@ -96,7 +97,7 @@ class _WordStatesScreenState extends State<WordStatesScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                         ),
                         onPressed: () {
-                          // Add navigation logic here
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CountryDetailScreen()));
                         },
                         child: Text(
                           "Track Countries",
