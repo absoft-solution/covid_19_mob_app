@@ -121,16 +121,37 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
                       } else if (name
                           .toLowerCase()
                           .contains(searchController.text.toLowerCase())) {
-                        return ListTile(
-                          leading: Image.network(
-                            country["countryInfo"]["flag"],
-                            height: 50,
-                            width: 50,
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SelectedCountryDataScreen(
+                                          image: country["countryInfo"]["flag"],
+                                          name: country["country"],
+                                          active: country['active'],
+                                          critical: country['critical'],
+                                          test: country['tests'],
+                                          todayRecovered:
+                                              country['todayRecovered'],
+                                          totalCases: country['todayCases'],
+                                          totalDeaths: country['todayDeaths'],
+                                          totalRecovered:
+                                              country['todayRecovered'],
+                                        )));
+                          },
+                          child: ListTile(
+                            leading: Image.network(
+                              country["countryInfo"]["flag"],
+                              height: 50,
+                              width: 50,
+                            ),
+                            subtitle: Text(country['cases'].toString(),
+                                style: TextStyle(color: Colors.white)),
+                            title: Text(country["country"],
+                                style: TextStyle(color: Colors.white)),
                           ),
-                          subtitle: Text(country['cases'].toString(),
-                              style: TextStyle(color: Colors.white)),
-                          title: Text(country["country"],
-                              style: TextStyle(color: Colors.white)),
                         );
                       } else {
                         return Container();
